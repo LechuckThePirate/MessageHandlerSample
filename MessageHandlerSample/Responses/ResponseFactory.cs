@@ -24,9 +24,9 @@ namespace MessageHandlerSample.Responses
                 .Where(t => t.GetCustomAttributes<HandlesResponseTypeAttribute>().Any())
                 .Select(type => {
                     var handlesResponseTypeAttr = type.GetCustomAttribute<HandlesResponseTypeAttribute>().ResponseType;
-                    return new { key = handlesResponseTypeAttr, activator = BuildExpressionTreeActivatorFor(type) };
+                    return new { responseType = handlesResponseTypeAttr, activator = BuildExpressionTreeActivatorFor(type) };
                 })
-                .ToDictionary(o => o.key, o => o.activator);
+                .ToDictionary(o => o.responseType, o => o.activator);
         }
 
         #endregion

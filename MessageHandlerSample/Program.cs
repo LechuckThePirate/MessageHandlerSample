@@ -45,19 +45,19 @@ namespace MessageHandlerSample
         private static void ProcessTestResponses(IEnumerable<TestResponse> responses)
         {
             responses.Select(r => r.GetValue())
-                .ForEach(dto => Console.WriteLine("Id: {0}, Name: {1}", dto.Id, dto.Name));
+                .ForEach(dto => Console.WriteLine($"Id: {dto.Id}, Name: {dto.Name}"));
         }
 
         private static void ProcessAnotherResponses(IEnumerable<AnotherResponse> responses)
         {
             responses.Select(r => r.GetValue())
-                .ForEach(dto => Console.WriteLine("Code: {0}, Active: {1}, Quantity: {2:0.00}", dto.Code, dto.Code, dto.Quantity));
+                .ForEach(dto => Console.WriteLine($"Code: {dto.Code}, Active: {dto.IsActive}, Quantity: {dto.Quantity:0.00}"));
         }
 
         private static void ProcessThirdResponses(IEnumerable<ThirdResponse> responses)
         {
             responses.Select(r => r.GetValue())
-                .ForEach(dto => Console.WriteLine("Number: {0}", dto.Number));
+                .ForEach(dto => Console.WriteLine($"Number: {dto.Number}"));
         }
 
 
