@@ -17,9 +17,9 @@ namespace MessageHandlerSample
                 "ARTICLE|ABCCDEE|true|2,5",
                 "TABLE|15|Item Id 15",
                 "TABLE|20|Item Id 20",
-                "THIRD|38743",
+                "CALENDAR|01/05/2016 14:00|Meeting",
                 "ARTICLE|9388d99|false|0,20",
-                "THIRD|99999"
+                "CALENDAR|06/02/2017 17:00|Buy more Redbull"
             };
 
             Console.WriteLine("Processing list: ");
@@ -28,36 +28,36 @@ namespace MessageHandlerSample
             var responses = responseList.Select(responseString => ResponseFactory.Create(responseString));
 
             // If you want to process the responses
-            ProcessTestResponses(responses.OfType<TestResponse>());
-            ProcessAnotherResponses(responses.OfType<AnotherResponse>());
-            ProcessThirdResponses(responses.OfType<ThirdResponse>());
+            ProcessTableResponses(responses.OfType<TableResponse>());
+            ProcessArticleResponses(responses.OfType<ArticleResponse>());
+            ProcessCalendarResponses(responses.OfType<CalendarResponse>());
 
             // If you just want the DTOs
-            var testDtos = responses.OfType<TestResponse>().Select(r => r.GetValue());
-            var anotherDtos = responses.OfType<AnotherResponse>().Select(r => r.GetValue());
-            var thirdDtos = responses.OfType<ThirdResponse>().Select(r => r.GetValue());
+            var tableDtos = responses.OfType<TableResponse>().Select(r => r.GetValue());
+            var articleDtos = responses.OfType<ArticleResponse>().Select(r => r.GetValue());
+            var calendarDtos = responses.OfType<CalendarResponse>().Select(r => r.GetValue());
 
             Console.WriteLine();
             Console.Write("Press any key to exit...");
             Console.ReadKey();
         }
 
-        private static void ProcessTestResponses(IEnumerable<TestResponse> responses)
+        private static void ProcessTableResponses(IEnumerable<TableResponse> responses)
         {
             responses.Select(r => r.GetValue())
                 .ForEach(dto => Console.WriteLine($"Id: {dto.Id}, Name: {dto.Name}"));
         }
 
-        private static void ProcessAnotherResponses(IEnumerable<AnotherResponse> responses)
+        private static void ProcessArticleResponses(IEnumerable<ArticleResponse> responses)
         {
             responses.Select(r => r.GetValue())
                 .ForEach(dto => Console.WriteLine($"Code: {dto.Code}, Active: {dto.IsActive}, Quantity: {dto.Quantity:0.00}"));
         }
 
-        private static void ProcessThirdResponses(IEnumerable<ThirdResponse> responses)
+        private static void ProcessCalendarResponses(IEnumerable<CalendarResponse> responses)
         {
             responses.Select(r => r.GetValue())
-                .ForEach(dto => Console.WriteLine($"Number: {dto.Number}"));
+                .ForEach(dto => Console.WriteLine($"Date: {dto.Date}, Description: {dto.Description}"));
         }
 
 

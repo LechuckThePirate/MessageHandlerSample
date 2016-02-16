@@ -5,15 +5,15 @@ using System;
 namespace MessageHandlerSample.Responses
 {
     [HandlesResponseType("ARTICLE")]
-    public class AnotherResponse : GenericResponse<AnotherDTO>
+    public class ArticleResponse : GenericResponse<ArticleDTO>
     {
-        public AnotherResponse(string value) : base(value) { }
+        public ArticleResponse(string value) : base(value) { }
 
-        public override AnotherDTO GetValue()
+        public override ArticleDTO GetValue()
         {
             try
             {
-                var result = new AnotherDTO();
+                var result = new ArticleDTO();
                 var valueArray = this.Value.Split(FieldSeparator);
                 result.Code = valueArray[1];
                 result.IsActive = bool.Parse(valueArray[2]);

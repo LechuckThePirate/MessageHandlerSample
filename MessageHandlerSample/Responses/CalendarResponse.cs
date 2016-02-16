@@ -4,19 +4,20 @@ using System;
 
 namespace MessageHandlerSample.Responses
 {
-    [HandlesResponseType("THIRD")]
-    public class ThirdResponse : GenericResponse<ThirdDTO>
+    [HandlesResponseType("CALENDAR")]
+    public class CalendarResponse : GenericResponse<CalendarDTO>
     {
 
-        public ThirdResponse(string value) : base(value) { }
+        public CalendarResponse(string value) : base(value) { }
 
-        public override ThirdDTO GetValue()
+        public override CalendarDTO GetValue()
         {
             try
             {
-                var result = new ThirdDTO();
+                var result = new CalendarDTO();
                 var valueArray = this.Value.Split(FieldSeparator);
-                result.Number = long.Parse(valueArray[1]);
+                result.Date = DateTime.Parse(valueArray[1]);
+                result.Description = valueArray[2];
                 return result;
             }
             catch

@@ -5,16 +5,16 @@ using System;
 namespace MessageHandlerSample.Responses
 {
     [HandlesResponseType("TABLE")]
-    public class TestResponse : GenericResponse<TestDTO>
+    public class TableResponse : GenericResponse<TableDTO>
     {
 
-        public TestResponse(string value) : base(value) { }
+        public TableResponse(string value) : base(value) { }
 
-        public override TestDTO GetValue()
+        public override TableDTO GetValue()
         {
             try
             {
-                var result = new TestDTO();
+                var result = new TableDTO();
                 var valueArray = this.Value.Split(FieldSeparator);
                 result.Id = long.Parse(valueArray[1]);
                 result.Name = valueArray[2];
