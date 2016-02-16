@@ -18,7 +18,8 @@ namespace MessageHandlerSample
                 "TABLE|15|Item Id 15",
                 "TABLE|20|Item Id 20",
                 "THIRD|38743",
-                "ARTICLE|9388d99|false|0,20"
+                "ARTICLE|9388d99|false|0,20",
+                "THIRD|99999"
             };
 
             Console.WriteLine("Processing list: ");
