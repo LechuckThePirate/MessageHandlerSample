@@ -16,7 +16,7 @@ namespace MessageHandlerSample.Responses
 
         #endregion
 
-        #region .: Static Constructor :.
+        #region .: Static Constructor / Initialize expression tree cache :.
 
         static ResponseFactory()
         {
@@ -33,10 +33,16 @@ namespace MessageHandlerSample.Responses
 
         #region .: Public Methods :.
 
+        /// <summary>
+        /// Based on a "value" message, finds out what response type must be used
+        /// to handle it, and creates a new instance passing "value" to it's constructor
+        /// </summary>
+        /// <param name="value">Response message to handle</param>
+        /// <returns></returns>
         public static BaseResponse Create(string value)
         {
             if (string.IsNullOrWhiteSpace(value)) throw new ArgumentException();
-            // Get the record type
+            // Get the response type
             var responseType = value.Split(BaseResponse.FieldSeparator)[0];
             // Get an activator delegate to create the object from the cache...
             var activator = GetActivatorFor(responseType);
